@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Restaurant Le Délice",
+    "address": "15 Rue Principale, Le Puy-en-Velay",
+    "cuisine_type": "French",
+    "rating": 4.7,
+    "latitude": 45.044556,
+    "longitude": 3.883675
+  },
+  {
+    "name": "Pizzeria Bella Napoli",
+    "address": "10 Place de la République, Le Puy-en-Velay",
+    "cuisine_type": "Italian",
+    "rating": 4.2,
+    "latitude": 45.043267,
+    "longitude": 3.881923
+  },
+  {
+    "name": "Sushi Zen",
+    "address": "8 Rue Saint-Joseph, Le Puy-en-Velay",
+    "cuisine_type": "Japanese",
+    "rating": 4.5,
+    "latitude": 45.044835,
+    "longitude": 3.879547
+  },
+  {
+    "name": "Café du Marché",
+    "address": "3 Place du Marché, Le Puy-en-Velay",
+    "cuisine_type": "Cafe",
+    "rating": 4.0,
+    "latitude": 45.044063,
+    "longitude": 3.881672
+  },
+  {
+    "name": "La Trattoria",
+    "address": "22 Rue des Arts, Le Puy-en-Velay",
+    "cuisine_type": "Italian",
+    "rating": 4.6,
+    "latitude": 45.043408,
+    "longitude": 3.885125
+  },
+  {
+    "name": "Chez Marie",
+    "address": "9 Rue de la Cathédrale, Le Puy-en-Velay",
+    "cuisine_type": "French",
+    "rating": 4.3,
+    "latitude": 45.045702,
+    "longitude": 3.879892
+  },
+  {
+    "name": "Spice Delight",
+    "address": "7 Rue des Épices, Le Puy-en-Velay",
+    "cuisine_type": "Indian",
+    "rating": 4.1,
+    "latitude": 45.042799,
+    "longitude": 3.884453
+  },
+  {
+    "name": "Mediterranean Flavors",
+    "address": "12 Rue de la Mer, Le Puy-en-Velay",
+    "cuisine_type": "Mediterranean",
+    "rating": 4.4,
+    "latitude": 45.046219,
+    "longitude": 3.883018
+  },
+  {
+    "name": "Green Garden Salad",
+    "address": "5 Rue du Jardin, Le Puy-en-Velay",
+    "cuisine_type": "Healthy",
+    "rating": 4.8,
+    "latitude": 45.041963,
+    "longitude": 3.880988
+  },
+  {
+    "name": "Taste of Asia",
+    "address": "18 Rue Asiatique, Le Puy-en-Velay",
+    "cuisine_type": "Asian",
+    "rating": 4.5,
+    "latitude": 45.043973,
+    "longitude": 3.880329
+  }
+]

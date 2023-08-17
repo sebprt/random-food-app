@@ -1,0 +1,12 @@
+.full-height-map {
+  height: 100vh;
+}
+
+.button {
+  position: absolute;
+  bottom: 100px;
+
+  z-index: 1000;
+  padding: 5px 10px;
+  cursor: pointer;
+}
