@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MinimapControl from '../components/MinimapControl';
 import ShowDirection from '../components/ShowDirection';
 import LocationControl from '../components/LocationControl';
+import { ToastContainer } from 'react-toastify';
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -56,12 +57,13 @@ const Home = () => {
       scrollWheelZoom={true}
       trackResize={true}
     >
+      <ToastContainer />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      <MinimapControl position='topright' />
-      <LocationControl position='bottomleft' setPosition={setPosition} />
+      <MinimapControl />
+      <LocationControl position={position} setPosition={setPosition} />
       {data.map((marker, index) => (
         <Marker
           key={index}
@@ -85,7 +87,7 @@ const Home = () => {
           onClick={handleHighlightMarkers}
           disabled={isHighlighting}>Lancer</Button>
         {showDirectionsButton && (
-          <ShowDirection setRouteCoordinates={setRouteCoordinates} selectedRestaurant={selectedRestaurant} />
+          <ShowDirection setRouteCoordinates={setRouteCoordinates} position={position} selectedRestaurant={selectedRestaurant} />
         )}
       </Box>
     </MapContainer>

@@ -1,16 +1,24 @@
-import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import axios from 'axios';
-import { useMap } from 'react-leaflet';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const ShowDirection = ({ setRouteCoordinates, selectedRestaurant }) => {
-  const [position, setPosition] = useState(null);
-  const map = useMap();
+const ShowDirection = ({ position, setRouteCoordinates, selectedRestaurant }) => {
+  const notify = () => toast.error('Vous devez partager votre position afin de pouvoir établir un itinéraire.', {
+    position: 'top-center',
+    hideProgressBar: true
+  });
 
   const handleDirectionsButtonClick = () => {
+    if (!position) {
+      notify();
+
+      return;
+    }
+
     axios.get(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}a&start=${position.lng},${position.lat}&end=${selectedRestaurant.longitude},${selectedRestaurant.latitude}`)
       .then(response => {
         const coordinates = response.data.features[0].geometry.coordinates;
@@ -21,16 +29,12 @@ const ShowDirection = ({ setRouteCoordinates, selectedRestaurant }) => {
       });
   };
 
-  useEffect(() => {
-    map.locate().on('locationfound', function(e) {
-      setPosition(e.latlng);
-    });
-  }, [map]);
-
   return (
-    <Button variant='contained' startIcon={<DirectionsIcon />} onClick={handleDirectionsButtonClick}>
-      Y aller
-    </Button>
+    <>
+      <Button variant='contained' startIcon={<DirectionsIcon />} onClick={handleDirectionsButtonClick}>
+        Y aller
+      </Button>
+    </>
   );
 };
 
