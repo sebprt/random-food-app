@@ -1,13 +1,12 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
 import './Home.css';
 import data from '../data/restaurants.json';
 import { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MinimapControl from '../components/MinimapControl';
-import LocationMarker from '../components/LocationMarker';
 import ShowDirection from '../components/ShowDirection';
 import LocationControl from '../components/LocationControl';
 
@@ -18,6 +17,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const Home = () => {
+  const [position, setPosition] = useState(false);
   const [showDirectionsButton, setShowDirectionsButton] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [isHighlighting, setIsHighlighting] = useState(false);
@@ -61,8 +61,7 @@ const Home = () => {
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
       <MinimapControl position='topright' />
-      <LocationMarker />
-      <LocationControl position='bottomleft' />
+      <LocationControl position='bottomleft' setPosition={setPosition} />
       {data.map((marker, index) => (
         <Marker
           key={index}

@@ -1,8 +1,9 @@
-import { Rectangle, useMap, useMapEvent } from 'react-leaflet';
+import { Marker, Popup, Rectangle, useMap, useMapEvent } from 'react-leaflet';
 import { useCallback, useMemo, useState } from 'react';
 import { useEventHandlers } from '@react-leaflet/core'
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import { IconButton } from '@mui/material';
+import L from 'leaflet';
 
 const POSITION_CLASSES = {
   bottomleft: 'leaflet-bottom leaflet-left',
@@ -39,11 +40,25 @@ function MinimapBounds({ parentMap, zoom }) {
   return <Rectangle bounds={bounds} pathOptions={BOUNDS_STYLE} />
 }
 
-const LocationControl = ({ position, zoom }) => {
-  const parentMap = useMap()
+const LocationControl = ({ position, zoom, setPosition }) => {
+  const [bbox, setBbox] = useState([]);
+
+  const map = useMap()
 
   const positionClass =
     (position && POSITION_CLASSES[position]) || POSITION_CLASSES.topright
+
+  const enableLocation = () => {
+    map.locate().on("locationfound", function (e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+      const radius = e.accuracy;
+      const circle = L.circle(e.latlng, radius);
+      circle.addTo(map);
+      L.marker(e.latlng).addTo(map)
+      setBbox(e.bounds.toBBoxString().split(","));
+    });
+  }
 
   return (
     <div className={positionClass}>
@@ -54,6 +69,7 @@ const LocationControl = ({ position, zoom }) => {
            aria-label="Locate"
            aria-disabled="false"
            style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+          onClick={enableLocation}
         >
           <GpsFixedIcon sx={{ p:0, m: 0}} />
         </a>

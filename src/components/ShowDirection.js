@@ -6,7 +6,7 @@ import { useMap } from 'react-leaflet';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const ShowDirection = ({setRouteCoordinates, selectedRestaurant}) => {
+const ShowDirection = ({ setRouteCoordinates, selectedRestaurant }) => {
   const [position, setPosition] = useState(null);
   const map = useMap();
 
@@ -22,7 +22,7 @@ const ShowDirection = ({setRouteCoordinates, selectedRestaurant}) => {
   };
 
   useEffect(() => {
-    map.locate().on("locationfound", function (e) {
+    map.locate().on('locationfound', function(e) {
       setPosition(e.latlng);
     });
   }, [map]);
